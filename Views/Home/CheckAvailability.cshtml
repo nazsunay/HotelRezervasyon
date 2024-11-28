@@ -1,0 +1,78 @@
+﻿@model List<Room>
+@{
+    Layout = "_Layout"; 
+}
+
+  
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Our Rooms</h2>
+                        <div class="bt-option">
+                            <a href="/Home/Index">Home</a>
+                            <span>Rooms</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @foreach (var room in Model)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <img src="@room.ImageUrl" alt="@room.RoomName">
+                        <div class="ri-text">
+                            <h4>@room.RoomName</h4>
+                            <h3>@room.Price.ToString("C")<span>/Gecelik</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Boyut:</td>
+                                        <td>Çift Kişilik Yatak</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Kişi:</td>
+                                        <td>Maksimum  @room.Capacity kişi</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Yatak</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Televizyon, Sabah Kahvaltısı ,Oda Servisi</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Durum:</td>
+                                        <td>
+                                            @if (room.IsAvailable)
+                                            {
+                                                <span class="text-success">Uygun</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-danger">Dolu</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="/Home/MakeRoom?roomId=@room.Id" class="primary-btn">Rezervasyon Yap</a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+

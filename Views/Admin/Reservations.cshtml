@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebApplication3.Models.Reservation>
+@{
+    Layout = "_AdminLayout";
+}
+<h2>Rezervasyonlar</h2>
+
+@TempData["SuccessMessage"]
+@TempData["ErrorMessage"]
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ad</th>
+            <th>Soyad</th>
+            <th>Oda</th>
+            <th>Giriş Tarihi</th>
+            <th>Çıkış Tarihi</th>
+            <th>Durum</th>
+            <th>Aksiyonlar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>@reservation.FirstName</td>
+                <td>@reservation.LastName</td>
+                <td>@reservation.Room.RoomName</td>
+                <td>@reservation.CheckInDate.ToString("yyyy-MM-dd")</td>
+                <td>@reservation.CheckOutDate.ToString("yyyy-MM-dd")</td>
+                <td>@reservation.Status.ToString()</td>
+                <td>
+                    <form method="post" action="@Url.Action("UpdateReservationStatus", "Admin")">
+                       
+                        <input type="hidden" name="reservationId" value="@reservation.Id" />
+                        <select name="status" class="form-control">
+                            <option value="Pending" )>Beklemede</option>
+                            <option value="Confirmed" )>Onaylı</option>
+                            <option value="Canceled" >İptal Edildi</option>
+                            <option value="Completed" >Tamamlandı</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary mt-2">Durumu Güncelle</button>
+                    </form>
+
+
+                    <form method="post" action="@Url.Action("DeleteReservation", "Admin", new { id = reservation.Id })" style="display:inline;">
+                        <button type="submit" class="btn btn-danger mt-2">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

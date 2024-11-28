@@ -1,0 +1,78 @@
+﻿@model ReservationViewModel
+
+@{
+    Layout = "_Layout";
+}
+<style>
+    .room-details {
+        position: relative; /* Konumlandırmayı kontrol etmek için */
+    }
+
+    .reservation-button {
+        position: absolute; /* Sayfanın sağ tarafında konumlandırmak için */
+        right: 20px; /* Sağdan 20px boşluk */
+        top: 20px; /* Üstten 20px boşluk */
+    }
+
+    .primary-btn {
+        background-color: #FF8C00; /* Koyu turuncu arka plan rengi */
+        color: white; /* Buton metin rengi */
+        padding: 10px 20px; /* Buton iç boşlukları */
+        border-radius: 5px; /* Buton köşe yuvarlama */
+        text-decoration: none; /* Altı çizgiyi kaldırır */
+    }
+
+        .primary-btn:hover {
+            background-color: #FF7F00; /* Hover durumunda daha açık turuncu */
+        }
+
+    /* Oda özelliklerini büyütmek için stil */
+    h4 {
+        font-size: 1.5em; /* Başlık boyutunu artır */
+        margin-top: 20px; /* Üstten boşluk ekle */
+    }
+
+    ul {
+        font-size: 1.2em; /* Liste elemanlarının boyutunu artır */
+        margin-left: 20px; /* Soldan boşluk ekle */
+    }
+</style>
+
+<br/>
+<br />
+<br />
+<div class="container">
+    <h2>@Model.Room.RoomName</h2>
+    <div class="room-details">
+        <img src="@Model.Room.ImageUrl" alt="@Model.Room.RoomName" />
+        <div class="room-info">
+            <p><strong>Kapasite:</strong> @Model.Room.Capacity kişi</p>
+            <p><strong>Fiyat:</strong> @Model.Room.Price.ToString("C")</p>
+            <p>
+                <strong>Durum:</strong>
+                @if (Model.Room.IsAvailable)
+                {
+                    <span class="text-success">Uygun</span>
+                }
+                else
+                {
+                    <span class="text-danger">Dolu</span>
+                }
+            </p>
+           
+            <h4>Oda Özellikleri:</h4>
+            <ul>
+                <li>Wifi</li>
+                <li>Televizyon</li>
+                <li>Oda Servisi</li>
+                <li>Sabah Kahvaltısı</li>
+            </ul>
+        </div>
+        <div class="reservation-button" style="float: right; margin-top: -50px;">
+            <a href="/Home/MakeRoom?roomId=@Model.Room.Id" class="primary-btn">Rezervasyon Yap</a>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+</div>

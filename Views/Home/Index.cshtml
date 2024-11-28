@@ -1,0 +1,384 @@
+﻿@model WebApplication3.Models.ReservationViewModel
+@{
+    Layout = "_Layout";
+}
+<head>
+    <style>
+        .room-item img {
+            max-height: 300px;
+            object-fit: cover;
+        }
+
+        .ri-text {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .carousel-inner {
+            margin: 0 auto;
+        }
+
+        .blog-item {
+            background-size: cover;
+            background-position: center;
+            height: 300px; /* Yüksekliği ayarlayın */
+            width: 100%; /* Genişliği ayarlayın */
+            border-radius: 10px; /* Kenarları yuvarlayın */
+            overflow: hidden; /* Taşan kısımları gizle */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölgelendirme */
+            transition: transform 0.3s; /* Geçiş efekti */
+        }
+
+            .blog-item:hover {
+                transform: scale(1.05); /* Hover efekti */
+            }
+
+        .bi-text {
+            position: relative;
+            color: white; /* Metin rengini beyaz yap */
+            padding: 20px; /* İç boşluk ayarlayın */
+            background: rgba(0, 0, 0, 0.5); /* Arka plan rengi */
+            border-radius: 10px; /* Kenarları yuvarlayın */
+            bottom: 0; /* Aşağıda konumlandır */
+            width: 100%; /* Genişliği ayarlayın */
+        }
+    </style>
+</head>
+
+<!-- Hero Section Begin -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="hero-text">
+                    <h1>Kağıthane Resort Hotel</h1>
+                    <p>
+                        "İstanbul’un hızla gelişen merkezi Kağıthane’de yer alan otelimiz, hem iş seyahatleri hem de keyifli tatiller için ideal bir konum sunar. Şehrin önemli noktalarına yakınlığıyla dikkat çeken otelimiz, size konforlu ve ulaşımı kolay bir konaklama deneyimi vaat ediyor."
+                    </p>
+                    <a href="~/rooms.html" class="primary-btn">Odaları Keşfet</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
+                <div class="booking-form">
+                    <h3>Otelimizdeki tüm odalarımızı keşfedin</h3>
+                    <form method="post" action="@Url.Action("CheckAvailability", "Home")">
+                        <div class="check-date">
+                            <label for="date-in">Check In:</label>
+                            <input type="date" name="checkInDate" id="date-in" required />
+                        </div>
+                        <div class="check-date">
+                            <label for="date-out">Check Out:</label>
+                            <input type="date" name="checkOutDate" id="date-out" required />
+                        </div>
+                        <div class="select-option">
+                            <label for="room">Room:</label>
+                            <select id="room" name="RoomId" required>
+                                @if (Model.Rooms != null && Model.Rooms.Any())
+                                {
+                                    foreach (var room in Model.Rooms)
+                                    {
+                                        <option value="@room.Id">@room.RoomName - @room.Capacity people</option>
+                                    }
+                                }
+                                else
+                                {
+                                    <option disabled>Müsait oda yok</option>
+                                }
+                            </select>
+                        </div>
+                        <button type="submit">Uygunluğu Kontrol Et</button>
+                    </form>
+
+                    @if (TempData["NoAvailableRooms"] != null)
+                    {
+                        <div class="alert alert-warning">
+                            @TempData["NoAvailableRooms"]
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+
+               
+            </div>
+
+    </div>
+   
+
+        
+
+    <div class="hero-slider owl-carousel">
+        <div class="hs-item set-bg" data-setbg="/img/hero/hero-1.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="/img/hero/hero-2.jpg"></div>
+        <div class="hs-item set-bg" data-setbg="/img/hero/hero-3.jpg"></div>
+    </div>
+</section>
+<!-- Hero Section End -->
+
+
+<!-- Services Section End -->
+<section class="services-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span></span>
+                    <h2>Otelimizi Neden Tercih Etmelisiniz?</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-036-parking"></i>
+                    <h4>Seyehat Planı</h4>
+                    <p>
+                        Yürüyüş Ayakkabılarınızı Unutmayın: Dere kenarında ve Hasbahçe’de keyifli yürüyüşler için uygun ayakkabılar alın.
+                        Tarihi Yerleri Ziyaret Edin: Sadabad Camii ve çevresindeki tarihi dokuyu mutlaka görün.
+                        Doğayla Bütünleşin: Piknik yapmak ya da bisiklet sürmek için Hasbahçe’yi tercih edin.
+                        Alışveriş Molası: Modern yüzünü keşfetmek için Axis Kağıthane AVM’yi ziyaret edin.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-033-dinner"></i>
+                    <h4>Çeşitli Lezzet Durakları</h4>
+                    <p>
+                        Sadabad bölgesi, sadece tarihi atmosferiyle değil, aynı zamanda keyifli yemek seçenekleriyle de öne çıkıyor. Özellikle aile yemekleri için tercih edilen Türk mutfağı restoranları, lezzetli kebaplar ve mezeleriyle bilinir. Bölgede piknik sonrası acıkanlar için çevredeki ev yemekleri sunan mekanlar da güzel bir alternatif oluşturur. 
+                    </p>
+                </div>
+            </div>
+         
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-024-towel"></i>
+                    <h4>Araç Kiralama</h4>
+                    <p>
+                        Avis Rent a Car (Kağıthane Şubesi)
+
+                        Araç Tipleri: Ekonomik, lüks, SUV.
+                        Adres: Cendere Caddesi üzerinde yer alır.
+                        Avantajlar: Geniş araç filosu, 7/24 müşteri desteği.
+                        Enterprise Rent-A-Car
+
+                        Araç Tipleri: Geniş aile arabalarından spor modellere kadar seçenekler.
+                        Adres: Kağıthane merkezine yakın lokasyonlar.
+                        Avantajlar: Havalimanından teslim alma ve bırakma seçeneği.
+                        Hertz Car Rental
+
+                        Adres: Levent ve Maslak gibi komşu bölgelerde şubeleri bulunur.
+                        Avantajlar: Filo yeniliği ve profesyonel hizmet.
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-044-clock-1"></i>
+                    <h4>Tarihe Yakınlık</h4>
+                    <p>
+                        Kağıthane, İstanbul’un diğer tarihi zenginliklerine de oldukça yakındır. Örneğin, Kağıthane’ye sadece birkaç kilometre mesafede bulunan Eyüp Sultan ve Pierre Loti Tepesi gibi mekanlar, bölgenin tarihî geçmişini keşfetmek isteyen gezginler için önemli noktalar oluşturur. Eyüp Sultan, Osmanlı İmparatorluğu’ndan günümüze kadar dini ve kültürel olarak önemli bir semt olup, her yıl milyonlarca ziyaretçiyi ağırlamaktadır. Kağıthane'nin konumu, bu tür manevi zenginliklere ulaşım açısından oldukça avantajlıdır.
+
+                        Bunun yanı sıra, Kağıthane, Levent ve Maslak gibi modern iş merkezlerine yakın olmasına rağmen, eski İstanbul’un izlerini de içinde barındıran bir semt olma özelliğini taşır. Özellikle Çırağan Sarayı, Topkapı Sarayı ve Süleymaniye Camii gibi tarihi yapılar, Kağıthane’ye olan yakınlıklarıyla tarihi keşif yapmak isteyenler için büyük bir avantaj sağlar..
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-026-bed"></i>
+                    <h4>Ulaşım Kolaylığı</h4>
+                    <p>
+                        Şehrin merkezi noktalarına yakınlığı.
+                        Modern metro hatlarıyla hızlı bağlantılar.
+                        Alternatif toplu taşıma seçenekleri (otobüs, minibüs).
+                        Havalimanına kolay erişim.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-012-cocktail"></i>
+                    <h4>Doğal Güzellikleri</h4>
+                    <p>
+                        Kağıthane, doğal zenginlikleriyle modern İstanbul'un birleşim noktalarından biridir. Şehirleşme ve betonlaşmanın arttığı bu dönemde Kağıthane, yeşil alanlarını koruyarak, doğanın şehre entegre olmasına örnek teşkil etmektedir. Bunun yanı sıra, bölgedeki modern yaşam alanları, yeşil alanlarla bütünleşerek hem estetik hem de fonksiyonel olarak dikkat çekmektedir.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Odalarımız</h2>
+                    <div class="bt-option">
+                        <a href="/Home/Index">Anasayfa</a>
+                        <span>Odalar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @foreach (var room in Model.Rooms)
+            {
+                var photoUrls = room.ImageUrl.Split(','); // Fotoğraf URL'lerini ayır
+                <div class="col-lg-4 col-md-6">
+                    <div class="room-item">
+                        <div class="room-carousel">
+                            @foreach (var photo in photoUrls)
+                            {
+                                <div>
+                                    <img src="@photo" alt="@room.RoomName">
+                                </div>
+                            }
+                        </div>
+                        <div class="ri-text">
+                            <h4>@room.RoomName</h4>
+                            <h3>@room.Price.ToString("C")<span>/Gecelik</span></h3>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td class="r-o">Boyut:</td>
+                                        <td>Çift Kişilik Yatak</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Kişi:</td>
+                                        <td>Maksimum @room.Capacity kişi</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Bed:</td>
+                                        <td>King Yatak</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="r-o">Services:</td>
+                                        <td>Wifi, Televizyon, Sabah Kahvaltısı, Oda Servisi</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="/Home/RoomDetail/@room.Id">Oda Detayı</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Home Room Section End -->
+
+<!-- Blog Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Blog</h2>
+                    <div class="bt-option">
+                        <a href="/Home/Index">Home</a>
+                        <span>İstanbul Blog</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="blog-section blog-page spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-1.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Tarih</span>
+                        <h4><a href="/Home/Blog">Ayasofya: Tarihin İhtişamı</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-2.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Kültür</span>
+                        <h4><a href="/Home/Blog">Topkapı Sarayı: Osmanlı Mirası</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-3.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Doğa</span>
+                        <h4><a href="/Home/Blog">Büyük Çamlıca Tepesi: İstanbul'un Manzarası</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-4.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Eğlence</span>
+                        <h4><a href="/Home/Blog">Gülhane Parkı: İstanbul'un En Güzel Parkları</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-5.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Tarih</span>
+                        <h4><a href="/Home/Blog">Kız Kulesi: Denizin Ortasında Bir Kule</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-6.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Tarih</span>
+                        <h4><a href="/Home/Blog">Galata Kulesi: İstanbul'un Simgesi</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-7.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Kültür</span>
+                        <h4><a href="/Home/Blog">Dolmabahçe Sarayı: Zarafetin Adresi</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-8.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Alışveriş</span>
+                        <h4><a href="/Home/Blog">Kapalıçarşı: Alışveriş Cenneti</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="blog-item set-bg" data-setbg="/img/istanbul-9.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">Gezi</span>
+                        <h4><a href="/Home/Blog">Prens Adaları: Kaçış Noktanız</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section End -->
+<script>
+    $(document).ready(function() {
+        $('.room-carousel').slick({
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+            dots: true
+        });
+    });
+</script>

@@ -1,0 +1,29 @@
+﻿@model WebApplication3.Models.Room
+@{
+    Layout = "_AdminLayout";
+}
+<h2>Oda Ekle</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="RoomName">Oda Adı</label>
+        <input type="text" class="form-control" id="RoomName" name="RoomName" required />
+    </div>
+    <div class="form-group">
+        <label for="Capacity">Kapasite</label>
+        <input type="number" class="form-control" id="Capacity" name="Capacity" required />
+    </div>
+    <div class="form-group">
+        <label for="Price">Fiyat</label>
+        <input type="text" class="form-control" id="Price" name="Price" required />
+    </div>
+    <div class="form-group">
+        <label for="ImgUrl">Oda Resmi</label>
+        <input type="file" class="form-control" id="ImgUrl" name="ImgUrl" />
+    </div>
+    <div class="form-group">
+        <label for="IsAvailable">Uygun mu?</label>
+        <input type="checkbox" id="IsAvailable" name="IsAvailable" />
+    </div>
+    <button type="submit" class="btn btn-success">Ekle</button>
+</form>

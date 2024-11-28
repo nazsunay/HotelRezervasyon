@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebApplication3.Models.Room>
+@{
+    Layout = "_AdminLayout";
+}
+
+
+
+<!-- "Oda Ekle" butonunu sağa taşımak için flexbox kullanımı -->
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        <h4>Oda Yönetimi</h4>
+    </div>
+    <div>
+        <a href="@Url.Action("Create", "Admin")" class="btn btn-primary">Oda Ekle</a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Oda Adı</th>
+            <th>Kapasite</th>
+            <th>Durum</th>
+            <th>Fiyat</th>
+            <th>Resim</th>
+            <th>Aksiyonlar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var room in Model)
+        {
+            <tr>
+                <td>@room.RoomName</td>
+                <td>@room.Capacity</td>
+                <td>@(room.IsAvailable ? "Uygun" : "Dolu")</td>
+                <td>@room.Price</td>
+                <td><img src="@room.ImageUrl" alt="@room.RoomName" width="100" /></td>
+                <td>
+                    <a href="@Url.Action("Edit", "Admin", new { id = room.Id })" class="btn btn-primary">Güncelle</a>
+                    <form method="post" action="@Url.Action("DeleteReservation", "Admin", new { id = room.Id })" style="display:inline;">
+                        <button type="submit" class="btn btn-primary">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

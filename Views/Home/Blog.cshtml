@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<head>
+    <style>
+        .blog-item {
+            background-size: cover;
+            background-position: center;
+            height: 300px; /* Yüksekliği ayarlayın */
+            width: 100%; /* Genişliği ayarlayın */
+            border-radius: 10px; /* Kenarları yuvarlayın */
+            overflow: hidden; /* Taşan kısımları gizle */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Gölgelendirme */
+            transition: transform 0.3s; /* Geçiş efekti */
+        }
+
+            .blog-item:hover {
+                transform: scale(1.05); /* Hover efekti */
+            }
+
+        .bi-text {
+            position: relative;
+            color: white; /* Metin rengini beyaz yap */
+            padding: 20px; /* İç boşluk ayarlayın */
+            background: rgba(0, 0, 0, 0.5); /* Arka plan rengi */
+            border-radius: 10px; /* Kenarları yuvarlayın */
+            bottom: 0; /* Aşağıda konumlandır */
+            width: 100%; /* Genişliği ayarlayın */
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="breadcrumb-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-text">
+                        <h2>Blog</h2>
+                        <div class="bt-option">
+                            <a href="/Home/Index">Home</a>
+                            <span>İstanbul Blog</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <section class="blog-section blog-page spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-1.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Tarih</span>
+                            <h4><a href="/Home/Blog">Ayasofya: Tarihin İhtişamı</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-2.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Kültür</span>
+                            <h4><a href="/Home/Blog">Topkapı Sarayı: Osmanlı Mirası</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-3.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Doğa</span>
+                            <h4><a href="/Home/Blog">Büyük Çamlıca Tepesi: İstanbul'un Manzarası</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-4.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Eğlence</span>
+                            <h4><a href="/Home/Blog">Gülhane Parkı: İstanbul'un En Güzel Parkları</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-5.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Tarih</span>
+                            <h4><a href="/Home/Blog">Kız Kulesi: Denizin Ortasında Bir Kule</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-6.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Tarih</span>
+                            <h4><a href="/Home/Blog">Galata Kulesi: İstanbul'un Simgesi</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-7.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Kültür</span>
+                            <h4><a href="/Home/Blog">Dolmabahçe Sarayı: Zarafetin Adresi</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-8.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Alışveriş</span>
+                            <h4><a href="/Home/Blog">Kapalıçarşı: Alışveriş Cenneti</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-item set-bg" data-setbg="/img/istanbul-9.jpg">
+                        <div class="bi-text">
+                            <span class="b-tag">Gezi</span>
+                            <h4><a href="/Home/Blog">Prens Adaları: Kaçış Noktanız</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>

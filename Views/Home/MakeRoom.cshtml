@@ -1,0 +1,134 @@
+﻿@model Reservation
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>Odalar</h2>
+                    <div class="bt-option">
+                        <a href="/Home/Index">Anasayfa</a>
+                        <span>Odalar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="room-details-section spad">
+    <div class="container">
+        <div class="row">
+            @if (TempData["ReservationMessage"] != null)
+            {
+                <div class="col-lg-12">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <strong>!</strong> @TempData["ReservationMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            }
+
+            @if (TempData["ReservationSuccessMessage"] != null)
+            {
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>!</strong> @TempData["ReservationSuccessMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                </div>
+            }
+
+            @if (Model.Room != null)
+            {
+                <div class="room-details-item">
+                    <img src="@Model.Room.ImageUrl" alt="@Model.Room.RoomName">
+                    <div class="rd-text">
+                        <div class="rd-title">
+                            <h3>@Model.Room.RoomName</h3>
+                        </div>
+                        <h2>@Model.Room.Price.ToString("C")<span>/Gecelik</span></h2>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="r-o">Boyut:</td>
+                                    <td>Çift Kişilik Yatak</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Kişi:</td>
+                                    <td>Maksimum @Model.Room.Capacity kişi</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Bed:</td>
+                                    <td>King Yatak</td>
+                                </tr>
+                                <tr>
+                                    <td class="r-o">Services:</td>
+                                    <td>Wifi, Televizyon, Sabah Kahvaltısı, Oda Servisi</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <p>Oda bilgisi bulunamadı.</p>
+            }
+
+            <div class="col-lg-4">
+                <div class="room-booking">
+                    <h3>Rezervasyon Bilgileri</h3>
+
+                    <form asp-action="MakeRoom" method="POST">
+                        <div class="room-info">
+                            <h4>Oda: @Model.Room.RoomName</h4>
+                        </div>
+                        <input type="hidden" asp-for="RoomId" />
+
+                        <div class="check-date">
+                            <label for="Name">Ad:</label>
+                            <input type="text" id="Name" asp-for="FirstName" required />
+                        </div>
+                        <div class="check-date">
+                            <label for="Name">Soyad:</label>
+                            <input type="text" id="Name" asp-for="LastName" required />
+                        </div>
+                        <div class="check-date">
+                            <label for="Email">Email:</label>
+                            <input type="email" id="Email" asp-for="Email" required />
+                        </div>
+
+                        <div class="check-date">
+                            <label for="PhoneNumber">Telefon Numarası:</label>
+                            <input type="tel" id="PhoneNumber" asp-for="Phone" required />
+                        </div>
+
+                        <div class="check-date">
+                            <label for="CheckInDate">Giriş Tarihi:</label>
+                            <input type="date" id="CheckInDate" asp-for="CheckInDate" required />
+                        </div>
+
+                        <div class="check-date">
+                            <label for="CheckOutDate">Çıkış Tarihi:</label>
+                            <input type="date" id="CheckOutDate" asp-for="CheckOutDate" required />
+                        </div>
+
+                        <div class="check-date">
+                            <label for="SpecialRequests">Özel Talepler:</label>
+                            <textarea id="SpecialRequests" asp-for="SpecialRequests"></textarea>
+                        </div>
+
+                        <button type="submit">Rezerve Et</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

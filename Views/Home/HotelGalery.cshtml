@@ -1,0 +1,83 @@
+﻿
+
+<style>
+    /* Otel galeri başlığı */
+    .hotel-gallery-section {
+        padding: 50px 20px;
+        text-align: center;
+        background-color: #f9f9f9;
+    }
+
+        /* Başlık stil */
+        .hotel-gallery-section h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+    /* Galeri container'ı */
+    .gallery-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    /* Galeri item'ları */
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+        /* Görsellerin stilini ayarlama */
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        /* Hover efekti */
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+    /* Yalnızca galeri item'larına padding ve border ekleyebilirsiniz */
+
+
+</style>
+<section class="hotel-gallery-section">
+    <h3>Otelimizin  Fotoğrafları</h3>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-7.jpg" alt="Hotel Image 1" />
+        </div>
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-2.jpg" alt="Hotel Image 1" />
+        </div>
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-3.jpeg" alt="Hotel Image 1" />
+        </div>
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-4.jpeg" alt="Hotel Image 1" />
+        </div>
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-5.jpeg" alt="Hotel Image 1" />
+        </div>
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-6.jpeg" alt="Hotel Image 1" />
+        </div>
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-7.jpg" alt="Hotel Image 7" />
+        </div>
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-8.jpeg" alt="Hotel Image 1" />
+        </div>
+        <div class="gallery-item">
+            <img src="~/img/HotelGallery/Dış-9.jpeg" alt="Hotel Image 1" />
+        </div>
+    </div>
+</section>
